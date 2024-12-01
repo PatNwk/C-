@@ -1,0 +1,49 @@
+﻿@model List<Asset>
+
+@{
+    Layout = null;
+}
+
+<h2>Liste des Actifs</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+
+
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Quantité disponible</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asset in Model)
+        {
+            <tr>
+                <td>@asset.Name</td>
+                <td>@asset.Price</td>
+                <td>@asset.Quantity</td>
+                <td>
+                    <!-- Bouton pour acheter l'actif -->
+                    <a href="@Url.Action("BuyAsset", "Transaction", new { assetId = asset.AssetId })" class="btn btn-primary">Acheter</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

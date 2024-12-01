@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Fond global */
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom left, rgb(240, 237, 246) 0%, rgb(198, 199, 232) 100%);
+            color: black;
+            font-family: 'Poppins', sans-serif;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Conteneur principal */
+        .container {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 50px; /* Espace au-dessus */
+            margin-bottom: 50px; /* Espace en bas */
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: rgb(73, 74, 112);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .btn-primary {
+            background-color: rgb(73, 74, 112);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 25px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            width: 100%;
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                background: rgb(50, 50, 100);
+            }
+
+        .alert {
+            margin-top: 20px;
+        }
+
+        /* Lien de création de compte */
+        .btn-create-account {
+            background-color: rgb(73, 74, 112);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 25px;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+            .btn-create-account:hover {
+                background-color: rgb(50, 50, 100);
+                color: white;
+            }
+
+        /* Bouton retour à l'index */
+        .btn-back {
+            background-color: transparent;
+            border: 2px solid rgb(73, 74, 112);
+            color: rgb(73, 74, 112);
+            font-size: 1rem;
+            border-radius: 25px;
+            padding: 10px 25px;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+            .btn-back:hover {
+                background-color: rgb(73, 74, 112);
+                color: white;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+
+        @if (ViewData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @ViewData["Error"]
+            </div>
+        }
+
+        <form method="post" action="@Url.Action("LoginPost", "Home")">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" class="form-control" id="username" name="username" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </form>
+
+        <!-- Bouton "Créer un compte" avec le même style que les autres boutons -->
+        <a href="/Home/Register" class="btn-create-account">Créer un compte</a>
+
+        <!-- Bouton retour à l'index -->
+        <a href="/Home/Index" class="btn-back">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

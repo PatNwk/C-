@@ -1,0 +1,6 @@
+/* Dans wwwroot/css/Index.css */
+
+body {
+    background-color: black;
+    color: white; /* Pour que le texte soit lisible sur un fond noir */
+}

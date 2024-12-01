@@ -1,0 +1,13 @@
+﻿@model MonWebApp.Models.User
+
+@{
+    ViewData["Title"] = "Tableau de bord";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>Nom d'utilisateur : @Model.Username</p>
+<p>Email : @Model.Email</p>
+<p>Adresse du portefeuille : @Model.WalletAddress</p>
+
+<a href="@Url.Action("Logout", "Home")">Déconnexion</a>

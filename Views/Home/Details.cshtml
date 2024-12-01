@@ -1,0 +1,166 @@
+﻿@model MonWebApp.Models.User
+
+@{
+    ViewData["Title"] = "Détails de l'utilisateur";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Ajoutez le CSS personnalisé ici (copié depuis le CSS ci-dessus) */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom left, rgb(240, 237, 246) 0%, rgb(198, 199, 232) 100%);
+            color: #121212;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4A4A4A;
+            text-align: center;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        dl {
+            margin-bottom: 30px;
+        }
+
+        dt {
+            font-weight: bold;
+            color: #555;
+        }
+
+        dd {
+            color: #333;
+            margin-left: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            table thead {
+                background-color: #6C63FF; /* Violet */
+                color: white;
+            }
+
+            table th, table td {
+                padding: 15px;
+                text-align: center;
+                font-size: 0.95rem;
+            }
+
+            table tbody tr:nth-child(odd) {
+                background-color: #F8F8F8;
+            }
+
+            table tbody tr:nth-child(even) {
+                background-color: #ECECEC;
+            }
+
+            table tbody tr:hover {
+                background-color: #D6D6FF;
+                color: #121212;
+            }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            background-color: #6C63FF;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+                background-color: #5146FF;
+            }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>@ViewData["Title"]</h1>
+
+        <!-- Affichage des détails de l'utilisateur -->
+        <dl class="row">
+            <dt class="col-sm-3">Nom d'utilisateur</dt>
+            <dd class="col-sm-9">@Model.Username</dd>
+
+            <dt class="col-sm-3">Mail</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+        </dl>
+
+        <!-- Affichage des actifs associés à l'utilisateur -->
+        <h3>Actifs de l'utilisateur</h3>
+        @if (Model.UserAssets != null && Model.UserAssets.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nom de l'actif</th>
+                        <th>Quantité</th>
+                        <th>Prix unitaire</th>
+                        <th>Valeur totale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var userAsset in Model.UserAssets)
+                    {
+                        <tr>
+                            <td>@userAsset.Asset.Name</td>
+                            <td>@userAsset.Quantity</td>
+                            <td>@userAsset.Asset.Price</td>
+                            <td>@(userAsset.Quantity * userAsset.Asset.Price)</td>  <!-- Valeur totale de l'actif -->
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>L'utilisateur n'a aucun actif.</p>
+        }
+
+        <a class="btn btn-primary" href="/Home/Index">Retour à l'accueil</a>
+    </div>
+</body>
+</html>

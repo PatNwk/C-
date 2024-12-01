@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MonWebApp.Models.User>
+
+    @{
+    ViewData["Title"] = "Users List";
+    }
+
+    <h1>@ViewData["Title"]</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Email</td>
+                <td>
+                    <a href="@Url.Action(" Details", "Users" , new { id=user.Id })">Voir Détails</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

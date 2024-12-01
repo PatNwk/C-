@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MonWebApp.Models.UserAsset>
+
+@{
+    Layout = null;
+}
+
+<h2>Mes actifs</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom de l'actif</th>
+            <th>Quantité</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var userAsset in Model)
+        {
+            <tr>
+                <td>@userAsset.Asset.Name</td>
+                <td>@userAsset.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
